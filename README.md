@@ -10,7 +10,7 @@ Int. J. Mod. Phys. C 19 (2008) 523-548,
 arXiv.org: [physics/0610206](http://arxiv.org/abs/physics/0610206)
 
 The source for the various methods discussed in the paper is provided [online](http://www.mpi-hd.mpg.de/personalhomes/globes/3x3/)
-and is LGPGL v2 licensed.
+and is LGPL v2 licensed.
 
 If you require a fast double precision implementation Kopp's C or FORTRAN implementation is likely a better
 choice, at the time of writing double precision doesn't perform very well in ispc. However if you
