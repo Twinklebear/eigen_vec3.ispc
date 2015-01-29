@@ -13,7 +13,7 @@ The source for the various methods discussed in the paper is provided [online](h
 and is LGPGL v2 licensed.
 
 If you require a fast double precision implementation Kopp's C or FORTRAN implementation is likely a better
-choice, at the time of writing double-precision doesn't perform very well in ispc. However if you
+choice, at the time of writing double precision doesn't perform very well in ispc. However if you
 don't need perfect accuracy on some (admittedly non-rigourous) benchmarks I found that the single
 precision ispc version can compute eigenvectors and eigenvalues within 0.00005 of Kopp's double precision C version
 about 99.7% of the time for vectors and 99.38% for eigenvalues (see error\_bench.c).
