@@ -5,6 +5,7 @@ over to ispc. This version uses [ispc](https://ispc.github.io/) to solve systems
 
 All credit for the implementation should go to the original author, Kopp, who introduced the hybrid method in:
 
+Joachim Kopp,
 **Efficient numerical diagonalization of hermitian 3x3 matrices**,
 Int. J. Mod. Phys. C 19 (2008) 523-548,
 arXiv.org: [physics/0610206](http://arxiv.org/abs/physics/0610206)
@@ -12,7 +13,7 @@ arXiv.org: [physics/0610206](http://arxiv.org/abs/physics/0610206)
 The source for the various methods discussed in the paper is provided [online](http://www.mpi-hd.mpg.de/personalhomes/globes/3x3/)
 and is LGPL v2 licensed.
 
-If you require a fast double precision implementation Kopp's C or FORTRAN implementation is likely a better
+If you require a fast double precision implementation Kopp's C or FORTRAN version is likely a better
 choice, at the time of writing double precision doesn't perform very well in ispc. However if you
 don't need perfect accuracy on some (admittedly non-rigourous) benchmarks I found that the single
 precision ispc version can compute eigenvectors and eigenvalues within 0.00005 of Kopp's double precision C version
