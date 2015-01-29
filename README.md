@@ -7,7 +7,9 @@ SIMD lanes and to easily extend to multiple threads.
 All credit for the implementation should go to the original author, Kopp, who introduced the hybrid method in:
 
 **Efficient numerical diagonalization of hermitian 3x3 matrices**
+
 Int. J. Mod. Phys. C 19 (2008) 523-548
+
 arXiv.org: [physics/0610206](http://arxiv.org/abs/physics/0610206)
 
 The source for the various methods discussed in the paper is provided [online](www.mpi-hd.mpg.de/personalhomes/globes/3x3/)
@@ -24,7 +26,8 @@ Usage
 ---
 The ispc source eigen\_vec3.ispc exports a single function which compiles to:
 ```c
-extern void eigen_vec3(const float * matrices, float * vecs, float * vals, const int32_t num_mats);
+extern void eigen_vec3(const float * matrices, float * vecs,
+		float * vals, const int32_t num_mats);
 ```
 For usage from C++ the function will be placed in the ispc namespace and can be called as `ispc::eigen_vec3`.
 `matrices` should contain `num_mats * 9` floats and be the 3x3 matrices to be solved. `vecs` will store
