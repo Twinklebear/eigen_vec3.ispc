@@ -33,3 +33,7 @@ the computed eigenvectors in row-major order with vectors stored in the columns 
 storage for `num_mats * 9` floats. `vals` will contain the eigenvalues for each eigenvector and should have
 room for `num_mats * 3` floats.
 
+You can also configure whether or not to fallback to QL iteration if it looks like there will be
+large error in the calculation by setting `ANALYTIC_ONLY` to 1 (no fallback) or 0 (use fallback). The
+define is set on line 9 of eigen\_vec3.ispc.
+

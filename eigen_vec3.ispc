@@ -6,7 +6,7 @@
 #define AT(m, r, c) ((m)[(r) * 3 + (c)])
 #define EPSILON 1.19209290E-07f
 // Select between analytic only or analytic + QL fallback if potentially large error may occur
-#define ANALYTIC_ONLY 1
+#define ANALYTIC_ONLY 0
 
 // Square the value
 inline float sqr(const float x){
