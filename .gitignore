@@ -7,6 +7,9 @@
 # swap files
 *.swp
 
+# The header is actually compiled by ispc too and should be ignored
+*.h
+
 # Precompiled Headers
 *.gch
 *.pch
