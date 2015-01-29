@@ -8,13 +8,10 @@
 // Select between analytic only or analytic + QL fallback if potentially large error may occur
 #define ANALYTIC_ONLY 1
 
-#ifndef sqr
-// Will this be ok with integrating with ospray's built in sqr function?
-inline float sqr(float x){
+// Square the value
+inline float sqr(const float x){
 	return x * x;
 }
-#endif
-
 // Calculates the eigenvalues of a symmetric 3x3 matrix `mat` using Cardano's
 // analytical algorithm. The matrix should contain all entries of the matrix for now
 // but TODO we only really need the upper triangle.
@@ -284,58 +281,7 @@ int eig_hybrid(const uniform float *A, float *Q, float *w){
 	AT(Q, 2, 2) = AT(Q, 0, 0) * AT(Q, 1, 1) - AT(Q, 1, 0) * AT(Q, 0, 1);
 	return 0;
 }
-// Calculates eigenvectors and eigenvalues of a symmetric 3x3 matrix using
-// the analytic method from Jeong '06
-// See: http://people.seas.harvard.edu/~wkjeong/publication/vg06-jeong.pdf
-// TODO: Is this implemented properly? It seems to give much less accurate eigenvectors
-// it also isn't that much faster so maybe just go with the hybrid method?
-int eig_jeong(const uniform float *A, float *Q, float *w){
-	// Compute eigenvalues
-	eig_vals(A, w);
-	// Compute eigenvectors
-	float<3> va = { AT(A, 0, 0) - w[0], AT(A, 0, 0) - w[1], AT(A, 0, 0) - w[2] };
-	float<3> vb = { AT(A, 1, 1) - w[0], AT(A, 1, 1) - w[1], AT(A, 1, 1) - w[2] };
-	float<3> vc = { AT(A, 2, 2) - w[0], AT(A, 2, 2) - w[1], AT(A, 2, 2) - w[2] };
-
-	float p = AT(A, 0, 1) * AT(A, 1, 2);
-	float<3> vd = { p - vb.x * AT(A, 0, 2), p - vb.y * AT(A, 0, 2), p - vb.z * AT(A, 0, 2) };
-
-	p = AT(A, 0, 2) * AT(A, 1, 2);
-	float<3> ve = { p - vc.x * AT(A, 0, 1), p - vc.y * AT(A, 0, 1), p - vc.z * AT(A, 0, 1) };
-
-	p = AT(A, 0, 2) * AT(A, 0, 1);
-	float<3> vf = { p - va.x * AT(A, 1, 2), p - va.y * AT(A, 1, 2), p - va.z * AT(A, 1, 2) };
-
-	va = vd * ve;
-	vb = ve * vf;
-	vc = vd * vf;
-
-	float<3> ev1 = { va.x, vb.x, vc.x };
-	float<3> ev2 = { va.y, vb.y, vc.y };
-	float<3> ev3 = { va.z, vb.z, vc.z };
-	float norm = sqrt(rcp(sqr(ev1.x) + sqr(ev1.y) + sqr(ev1.z)));
-	ev1 = ev1 * norm;
-
-	norm = sqrt(rcp(sqr(ev2.x) + sqr(ev2.y) + sqr(ev2.z)));
-	ev2 = ev2 * norm;
-
-	norm = sqrt(rcp(sqr(ev3.x) + sqr(ev3.y) + sqr(ev3.z)));
-	ev3 = ev3 * norm;
-
-	AT(Q, 0, 0) = ev1.x;
-	AT(Q, 1, 0) = ev1.y;
-	AT(Q, 2, 0) = ev1.z;
-
-	AT(Q, 0, 1) = ev2.x;
-	AT(Q, 1, 1) = ev2.y;
-	AT(Q, 2, 1) = ev2.z;
-
-	AT(Q, 0, 2) = ev3.x;
-	AT(Q, 1, 2) = ev3.y;
-	AT(Q, 2, 2) = ev3.z;
-	return 0;
-}
-
+// Compute eigenvectors and eigenvalues for the matrices passed in parallel
 export void eig_vec_test(const uniform float matrices[], uniform float vecs[], uniform float vals[],
         const uniform int num_mats){
     foreach (i = 0 ... num_mats){
