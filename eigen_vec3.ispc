@@ -281,8 +281,11 @@ int eig_hybrid(const uniform float *A, float *Q, float *w){
 	AT(Q, 2, 2) = AT(Q, 0, 0) * AT(Q, 1, 1) - AT(Q, 1, 0) * AT(Q, 0, 1);
 	return 0;
 }
-// Compute eigenvectors and eigenvalues for the matrices passed in parallel
-export void eig_vec_test(const uniform float matrices[], uniform float vecs[], uniform float vals[],
+// Compute eigenvectors and eigenvalues of the matrices
+// matrices: 3x3 row-major matrices
+// vecs: 3x3 row-major matrices where the computed eigenvectors will be stored in the columns
+// vals: 3 floats per matrix to store the eigenvalues for each vector
+export void eigen_vec3(const uniform float matrices[], uniform float vecs[], uniform float vals[],
         const uniform int num_mats){
     foreach (i = 0 ... num_mats){
         eig_hybrid(&matrices[i * 9], &vecs[i * 9], &vals[i * 3]);

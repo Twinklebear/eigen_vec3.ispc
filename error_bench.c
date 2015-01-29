@@ -76,7 +76,7 @@ int main(int argc, char **argv){
 		// Time the ispc solving of all matrices in parallel
 		struct timeval start, end;
 		gettimeofday(&start, NULL);
-		eig_vec_test(mats_ispc, vecs_ispc, vals_ispc, N);
+		eigen_vec3(mats_ispc, vecs_ispc, vals_ispc, N);
 		gettimeofday(&end, NULL);
 		ispc_elapsed += 1000 * (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000;
 
