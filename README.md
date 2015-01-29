@@ -6,10 +6,8 @@ SIMD lanes and to easily extend to multiple threads.
 
 All credit for the implementation should go to the original author, Kopp, who introduced the hybrid method in:
 
-**Efficient numerical diagonalization of hermitian 3x3 matrices**
-
-Int. J. Mod. Phys. C 19 (2008) 523-548
-
+**Efficient numerical diagonalization of hermitian 3x3 matrices**,
+Int. J. Mod. Phys. C 19 (2008) 523-548,
 arXiv.org: [physics/0610206](http://arxiv.org/abs/physics/0610206)
 
 The source for the various methods discussed in the paper is provided [online](www.mpi-hd.mpg.de/personalhomes/globes/3x3/)
