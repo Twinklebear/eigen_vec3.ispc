@@ -3,7 +3,7 @@ eigen\_vec3.ispc
 This is a port of Joachim Kopp's excellent hybrid 3x3 real-symmetric eigenvector and eigenvalue solver
 over to ispc. This version uses [ispc](https://ispc.github.io/) to solve systems in parallel.
 
-All credit for the implementation should go to the original author, Kopp, who introduced the hybrid method in:
+All credit for the implementation should go to the original author who introduced the hybrid method in:
 
 Joachim Kopp,
 **Efficient numerical diagonalization of hermitian 3x3 matrices**,
